@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plurino — Multiple Streams. Automated Income.</title>
-    <meta name="description" content="Plurino builds automated digital systems that generate income with minimal ongoing manual work. Multiple streams. Zero reinventing the wheel.">
+    <title>Plurino — Build Once. Automate. Scale.</title>
+    <meta name="description" content="Plurino builds automated digital systems that work for you. Multiple income streams, smart automation, and AI-powered efficiency.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --bg-deep: #050508;
+            --bg-deep: #05050f;
             --bg-card: rgba(255,255,255,0.03);
+            --bg-card-hover: rgba(255,255,255,0.06);
             --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(139,92,246,0.4);
             --text-primary: #ffffff;
-            --text-secondary: rgba(255,255,255,0.6);
+            --text-secondary: rgba(255,255,255,0.65);
             --text-muted: rgba(255,255,255,0.4);
-            --accent: #6366f1;
-            --accent-glow: rgba(99,102,241,0.3);
-            --accent-secondary: #22d3ee;
+            --accent: #8b5cf6;
+            --accent-bright: #a78bfa;
+            --accent-glow: rgba(139,92,246,0.25);
+            --accent-secondary: #06b6d4;
             --success: #10b981;
         }
         
@@ -34,6 +37,21 @@
             overflow-x: hidden;
         }
         
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
         /* Nav */
         nav {
             position: fixed;
@@ -45,7 +63,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5,5,8,0.8);
+            background: rgba(5,5,15,0.85);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
@@ -60,7 +78,7 @@
         
         nav ul {
             display: flex;
-            gap: 40px;
+            gap: 32px;
             list-style: none;
         }
         
@@ -75,7 +93,7 @@
         nav a:hover { color: var(--text-primary); }
         
         .nav-cta {
-            padding: 10px 24px;
+            padding: 10px 20px;
             background: var(--accent);
             color: #fff !important;
             border-radius: 8px;
@@ -83,8 +101,9 @@
         }
         
         .nav-cta:hover {
-            background: #5558e3;
+            background: #7c3aed;
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139,92,246,0.3);
         }
         
         /* Hero */
@@ -93,24 +112,15 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 20px 80px;
+            padding: 120px 40px 80px;
             position: relative;
-            overflow: hidden;
+            z-index: 1;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            opacity: 0.4;
-            pointer-events: none;
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
         
         .hero-badge {
@@ -118,34 +128,35 @@
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.3);
             border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent-bright);
             margin-bottom: 32px;
+            letter-spacing: 0.05em;
         }
         
         .hero-badge .dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background: var(--success);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.9); }
         }
         
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 700;
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 800;
             letter-spacing: -0.03em;
             line-height: 1.1;
-            margin-bottom: 24px;
-            max-width: 900px;
+            margin-bottom: 28px;
         }
         
         .hero h1 .gradient {
@@ -156,11 +167,10 @@
         }
         
         .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 48px;
-            line-height: 1.7;
+            line-height: 1.8;
+            margin-bottom: 40px;
         }
         
         .hero-cta-group {
@@ -174,10 +184,10 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 16px 32px;
-            font-size: 1rem;
+            padding: 14px 28px;
+            font-size: 0.95rem;
             font-weight: 600;
-            border-radius: 12px;
+            border-radius: 10px;
             text-decoration: none;
             transition: all 0.3s;
             cursor: pointer;
@@ -190,9 +200,9 @@
         }
         
         .btn-primary:hover {
-            background: #5558e3;
+            background: #7c3aed;
             transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(99,102,241,0.3);
+            box-shadow: 0 20px 40px rgba(139,92,246,0.35);
         }
         
         .btn-secondary {
@@ -202,70 +212,54 @@
         }
         
         .btn-secondary:hover {
-            background: rgba(255,255,255,0.08);
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
             transform: translateY(-3px);
         }
         
-        .hero-stats {
-            display: flex;
-            gap: 60px;
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid var(--border);
+        /* Sections */
+        section {
+            padding: 100px 40px;
+            position: relative;
+            z-index: 1;
         }
         
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent);
-        }
-        
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-        
-        /* Philosophy */
-        .philosophy {
-            padding: 120px 40px;
-            max-width: 1200px;
+        .section-inner {
+            max-width: 1100px;
             margin: 0 auto;
         }
         
         .section-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         
-        .section-subtitle {
-            font-size: 1.1rem;
+        .section-intro {
+            font-size: 1.05rem;
             color: var(--text-secondary);
-            max-width: 700px;
             line-height: 1.8;
-            margin-bottom: 60px;
+            margin-bottom: 48px;
+            max-width: 650px;
         }
+        
+        /* Philosophy */
+        #philosophy { background: linear-gradient(180deg, transparent 0%, rgba(139,92,246,0.02) 50%, transparent 100%); }
         
         .principles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
         
         .principle-card {
@@ -277,60 +271,91 @@
         }
         
         .principle-card:hover {
-            border-color: var(--accent);
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
             transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(99,102,241,0.1);
         }
         
         .principle-icon {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
         }
         
         .principle-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
         .principle-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+        
+        /* How */
+        #how { background: var(--bg-deep); }
+        
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .how-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+        
+        .how-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+        
+        .how-card .number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        
+        .how-card h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .how-card p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
             line-height: 1.7;
         }
         
         /* What We Build */
-        .what-we-build {
-            padding: 120px 40px;
-            background: linear-gradient(180deg, transparent 0%, rgba(99,102,241,0.03) 50%, transparent 100%);
-        }
-        
-        .what-we-build .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
+        #what { background: linear-gradient(180deg, transparent 0%, rgba(139,92,246,0.03) 50%, transparent 100%); }
         
         .build-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 60px;
-            text-align: left;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
         
         .build-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 20px;
-            padding: 40px 32px;
+            padding: 32px 28px;
             position: relative;
             overflow: hidden;
             transition: all 0.4s;
@@ -349,188 +374,84 @@
         }
         
         .build-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(99,102,241,0.3);
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: 0 25px 60px rgba(139,92,246,0.12);
         }
         
         .build-card:hover::before { opacity: 1; }
         
         .build-icon {
-            font-size: 2.5rem;
-            margin-bottom: 24px;
+            font-size: 2rem;
+            margin-bottom: 20px;
         }
         
         .build-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
         .build-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-        
-        .build-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .build-tag {
-            font-size: 0.75rem;
-            padding: 6px 12px;
-            background: rgba(99,102,241,0.1);
-            border: 1px solid rgba(99,102,241,0.2);
-            border-radius: 20px;
-            color: var(--accent-secondary);
-        }
-        
-        /* Model */
-        .model {
-            padding: 120px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .model-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-        
-        .model-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-        
-        .model-step {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-        
-        .step-number {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            background: var(--accent);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        
-        .step-content h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        
-        .step-content p {
-            color: var(--text-secondary);
             font-size: 0.9rem;
+            line-height: 1.7;
         }
         
-        .model-diagram {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 48px;
-            text-align: center;
-        }
+        /* Approach */
+        #approach { background: var(--bg-deep); }
         
-        .diagram-flow {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            align-items: center;
-        }
-        
-        .diagram-box {
-            background: rgba(99,102,241,0.1);
-            border: 1px solid rgba(99,102,241,0.3);
-            border-radius: 12px;
-            padding: 16px 32px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-        
-        .diagram-arrow {
-            color: var(--accent);
-            font-size: 1.5rem;
-        }
-        
-        /* Revenue */
-        .revenue {
-            padding: 120px 40px;
-            background: linear-gradient(180deg, transparent 0%, rgba(16,185,129,0.03) 50%, transparent 100%);
-        }
-        
-        .revenue .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .revenue-grid {
+        .approach-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            margin-top: 60px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
         
-        .revenue-card {
+        .approach-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 32px 24px;
+            padding: 32px;
             transition: all 0.3s;
         }
         
-        .revenue-card:hover {
-            border-color: var(--success);
+        .approach-card:hover {
+            border-color: var(--border-hover);
             transform: translateY(-4px);
         }
         
-        .revenue-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-        }
-        
-        .revenue-card h4 {
-            font-size: 1rem;
+        .approach-card h4 {
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .revenue-card p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
+        .approach-card h4 span {
+            font-size: 1.2rem;
+        }
+        
+        .approach-card p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.75;
         }
         
         /* CTA */
         .cta {
-            padding: 120px 40px;
+            padding: 100px 40px;
             text-align: center;
         }
         
-        .cta .container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
         .cta-box {
-            background: linear-gradient(135deg, rgba(99,102,241,0.2) 0%, rgba(34,211,238,0.1) 100%);
-            border: 1px solid rgba(99,102,241,0.3);
-            border-radius: 32px;
-            padding: 80px 48px;
+            max-width: 650px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(6,182,212,0.08) 100%);
+            border: 1px solid rgba(139,92,246,0.25);
+            border-radius: 28px;
+            padding: 60px 48px;
             position: relative;
             overflow: hidden;
         }
@@ -538,41 +459,42 @@
         .cta-box::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 50%);
-            opacity: 0.3;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.5;
         }
         
         .cta h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             position: relative;
         }
         
         .cta p {
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 32px;
+            font-size: 1rem;
+            margin-bottom: 28px;
+            line-height: 1.7;
             position: relative;
         }
         
-        .cta .btn {
-            position: relative;
-        }
+        .cta .btn { position: relative; }
         
         /* Footer */
         footer {
-            padding: 60px 40px;
+            padding: 50px 40px;
             border-top: 1px solid var(--border);
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
         
         footer .logo {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         
         footer p {
@@ -580,263 +502,242 @@
             font-size: 0.85rem;
         }
         
+        footer .footer-note {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
         /* Responsive */
         @media (max-width: 900px) {
             nav { padding: 16px 20px; }
             nav ul { display: none; }
-            .hero-stats { flex-direction: column; gap: 30px; }
-            .model-content { grid-template-columns: 1fr; gap: 40px; }
+            section { padding: 80px 20px; }
+            .hero { padding: 100px 20px 60px; }
+            .hero-content { text-align: left; }
+            .section-intro { max-width: 100%; }
+            .principles-grid, .approach-grid { grid-template-columns: 1fr; }
+            .how-grid, .build-grid { grid-template-columns: repeat(2, 1fr); }
+            .build-grid .build-card:last-child { grid-column: span 2; }
+            .cta-box { padding: 48px 28px; }
         }
         
         @media (max-width: 600px) {
-            .hero { padding: 100px 20px 60px; }
             .hero h1 { letter-spacing: -0.02em; }
-            .philosophy, .what-we-build, .model, .revenue, .cta { padding: 80px 20px; }
-            .cta-box { padding: 48px 24px; }
-            .section-title { font-size: 1.8rem; }
+            .how-grid, .build-grid { grid-template-columns: 1fr; }
+            .build-grid .build-card:last-child { grid-column: auto; }
+            .cta { padding: 80px 20px; }
+        }
+        
+        /* Fade in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+    <div class="bg-grid"></div>
+    
     <nav>
         <div class="logo">Plur<span>ino</span></div>
         <ul>
             <li><a href="#philosophy">Philosophy</a></li>
-            <li><a href="#what-we-build">What We Build</a></li>
-            <li><a href="#model">Model</a></li>
-            <li><a href="#revenue">Revenue</a></li>
+            <li><a href="#how">How</a></li>
+            <li><a href="#what">What</a></li>
+            <li><a href="#approach">Approach</a></li>
             <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
         </ul>
     </nav>
     
     <section class="hero">
-        <div class="hero-badge">
-            <span class="dot"></span>
-            Building automated income streams
-        </div>
-        <h1>Multiple Streams.<br><span class="gradient">Automated Income.</span></h1>
-        <p>Plurino builds small digital systems that generate steady income with minimal manual work. Think of it as owning multiple vending machines instead of working a job.</p>
-        <div class="hero-cta-group">
-            <a href="#contact" class="btn btn-primary">Partner With Us</a>
-            <a href="#what-we-build" class="btn btn-secondary">See What We Build</a>
-        </div>
-        <div class="hero-stats">
-            <div class="stat">
-                <div class="stat-value">100%</div>
-                <div class="stat-label">Automation First</div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Automated Systems. Real Income.
             </div>
-            <div class="stat">
-                <div class="stat-value">5+</div>
-                <div class="stat-label">Revenue Streams</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">0</div>
-                <div class="stat-label"> reinventing the wheel</div>
+            <h1>Build Once.<br><span class="gradient">Automate. Scale.</span></h1>
+            <p>We build digital systems that work for you. Modern AI and agentic workflows handle the repetitive work so you can focus on building, coding, and growing. No business is 100% passive—but why work harder when you can work smarter?</p>
+            <div class="hero-cta-group">
+                <a href="#contact" class="btn btn-primary">Let's Talk →</a>
+                <a href="#what" class="btn btn-secondary">See What We Build</a>
             </div>
         </div>
     </section>
     
-    <section class="philosophy" id="philosophy">
-        <div class="section-label">Philosophy</div>
-        <h2 class="section-title">We believe in working smarter, not harder</h2>
-        <p class="section-subtitle">Plurino is built on the principle that income should come from systems and outputs—not hours worked. We automate everything possible, reuse what's proven, and scale what works.</p>
-        
-        <div class="principles-grid">
-            <div class="principle-card">
-                <div class="principle-icon">⚡</div>
-                <h3>Value Over Time</h3>
-                <p>Income should come from systems and outputs, not hours worked. We build assets that work while we sleep.</p>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">🔄</div>
-                <h3>Automation First</h3>
-                <p>Anything repetitive should be automated, simplified, or removed. Manual work is a bug to be fixed.</p>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">🧱</div>
-                <h3>Modular Thinking</h3>
-                <p>Build once, reuse many times. Our systems are designed to be adaptable and scalable across different markets.</p>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">🌊</div>
-                <h3>Multiple Streams</h3>
-                <p>Many smaller, lower-risk systems beat one big bet. Diversification creates stability and reduces exposure.</p>
+    <section id="philosophy">
+        <div class="section-inner">
+            <div class="section-label">Philosophy</div>
+            <h2 class="section-title">Why we're building this</h2>
+            <p class="section-intro">We believe in getting paid for performance and output—not time. The traditional model of trading hours for money is broken. We build systems that generate value while we sleep, using modern tools to fill the gaps where pure code can't reach.</p>
+            
+            <div class="principles-grid">
+                <div class="principle-card fade-in">
+                    <div class="principle-icon">⚡</div>
+                    <h3>Pay for Performance, Not Time</h3>
+                    <p>Your income should reflect what you produce, not how many hours you sit at a desk. We build systems that deliver results and scale with impact.</p>
+                </div>
+                <div class="principle-card fade-in">
+                    <div class="principle-icon">🤖</div>
+                    <h3>Automation First, AI Where It Counts</h3>
+                    <p>Everything that can be automated, should be. We use code for reliability and AI agents to handle the grey areas—content, decisions, adaptations.</p>
+                </div>
+                <div class="principle-card fade-in">
+                    <div class="principle-icon">🧱</div>
+                    <h3>Build, Template, Reapply</h3>
+                    <p>When we find a winning formula, we template it and apply it to new niches. One win becomes the foundation for the next.</p>
+                </div>
+                <div class="principle-card fade-in">
+                    <div class="principle-icon">🎯</div>
+                    <h3>Focus on What Matters</h3>
+                    <p>Automate the day-to-day. Spend your time on building, coding, R&D, customer outreach, and growth—not repetitive maintenance tasks.</p>
+                </div>
             </div>
         </div>
     </section>
     
-    <section class="what-we-build" id="what-we-build">
-        <div class="container">
+    <section id="how">
+        <div class="section-inner">
+            <div class="section-label">How It Works</div>
+            <h2 class="section-title">The Plurino System</h2>
+            <p class="section-intro">A repeatable playbook for building automated income. We identify opportunities, build fast, validate, then scale what works.</p>
+            
+            <div class="how-grid">
+                <div class="how-card fade-in">
+                    <div class="number">01</div>
+                    <h4>Identify</h4>
+                    <p>Spot underserved niches where digital products or services could solve real problems efficiently.</p>
+                </div>
+                <div class="how-card fade-in">
+                    <div class="number">02</div>
+                    <h4>Build & Automate</h4>
+                    <p>Develop the core product using code where possible, AI agents for flexibility, and automated workflows for operations.</p>
+                </div>
+                <div class="how-card fade-in">
+                    <div class="number">03</div>
+                    <h4>Validate Fast</h4>
+                    <p>Launch quickly, measure response, gather real feedback. Kill what doesn't work, double down on what does.</p>
+                </div>
+                <div class="how-card fade-in">
+                    <div class="number">04</div>
+                    <h4>Template & Scale</h4>
+                    <p>Once we find a winner, we extract the framework and apply it to adjacent niches and markets.</p>
+                </div>
+                <div class="how-card fade-in">
+                    <div class="number">05</div>
+                    <h4>Maintain & Grow</h4>
+                    <p>Automated systems handle the routine. We focus on morning maintenance, customer engagement, and new development.</p>
+                </div>
+                <div class="how-card fade-in">
+                    <div class="number">06</div>
+                    <h4>Security & Reliability</h4>
+                    <p>Built with security in mind from day one. Stable, maintainable systems that don't require constant babysitting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="what">
+        <div class="section-inner">
             <div class="section-label">What We Build</div>
-            <h2 class="section-title">Five pillars of automated income</h2>
-            <p class="section-subtitle">Each system is built to be self-sustaining, automated, and expandable into new markets.</p>
+            <h2 class="section-title">Where we focus our efforts</h2>
+            <p class="section-intro">A mix of digital products, services, and systems—each designed to be automated, scalable, and reusable.</p>
             
             <div class="build-grid">
-                <div class="build-card">
+                <div class="build-card fade-in">
                     <div class="build-icon">🛒</div>
                     <h3>Niche E-Commerce</h3>
-                    <p>Targeted online stores with automated fulfilment. Physical or digital products, dropshipping with zero manual inventory.</p>
-                    <div class="build-tags">
-                        <span class="build-tag">Dropshipping</span>
-                        <span class="build-tag">Digital Products</span>
-                        <span class="build-tag">Niche Stores</span>
-                    </div>
+                    <p>Targeted stores with automated fulfilment. Physical or digital products, low overhead, fully managed operations.</p>
                 </div>
-                <div class="build-card">
+                <div class="build-card fade-in">
                     <div class="build-icon">🌐</div>
                     <h3>Web Applications</h3>
-                    <p>Automated tools that solve specific problems. Travel planners, business utilities, productivity apps. Monetise via subscriptions.</p>
-                    <div class="build-tags">
-                        <span class="build-tag">SaaS</span>
-                        <span class="build-tag">Subscriptions</span>
-                        <span class="build-tag">Micro Apps</span>
-                    </div>
+                    <p>Tools and utilities that solve specific problems. Subscriptions or one-time fees, with automated user management.</p>
                 </div>
-                <div class="build-card">
-                    <div class="build-icon">🧮</div>
-                    <h3>Digital Tools</h3>
-                    <p>Calculators, generators, productivity utilities. Low build cost, high scalability. Micro SaaS at its finest.</p>
-                    <div class="build-tags">
-                        <span class="build-tag">Tools</span>
-                        <span class="build-tag">Generators</span>
-                        <span class="build-tag">Utilities</span>
-                    </div>
+                <div class="build-card fade-in">
+                    <div class="build-icon">🤖</div>
+                    <h3>AI-Powered Services</h3>
+                    <p>Agentic systems and automated workflows. Content generation, data processing, decision support—AI handles the grey areas.</p>
                 </div>
-                <div class="build-card">
-                    <div class="build-icon">📋</div>
-                    <h3>Templates & Systems</h3>
-                    <p>Reusable website frameworks, automation workflows, backend structures. Reuse internally or sell to businesses.</p>
-                    <div class="build-tags">
-                        <span class="build-tag">Frameworks</span>
-                        <span class="build-tag">Workflows</span>
-                        <span class="build-tag">Templates</span>
-                    </div>
+                <div class="build-card fade-in">
+                    <div class="build-icon">📱</div>
+                    <h3>Mobile & Desktop Apps</h3>
+                    <p>Focused applications for specific use cases. Clean, fast, reliable—built for real utility rather than feature bloat.</p>
                 </div>
-                <div class="build-card">
-                    <div class="build-icon">🏢</div>
-                    <h3>B2B Infrastructure</h3>
-                    <p>Future offering: websites, booking systems, automation tools, and digital infrastructure for small businesses.</p>
-                    <div class="build-tags">
-                        <span class="build-tag">Websites</span>
-                        <span class="build-tag">Bookings</span>
-                        <span class="build-tag">Setup</span>
-                    </div>
+                <div class="build-card fade-in">
+                    <div class="build-icon">⚙️</div>
+                    <h3>Backend Systems</h3>
+                    <p>Reusable frameworks and automation pipelines. The infrastructure that makes everything else work without constant attention.</p>
+                </div>
+                <div class="build-card fade-in">
+                    <div class="build-icon">🔧</div>
+                    <h3>B2B Solutions</h3>
+                    <p>Setup and infrastructure for small businesses—websites, booking systems, automated operations. Template-based for speed.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="model" id="model">
-        <div class="section-label">How It Works</div>
-        <h2 class="section-title">Simple. Repeatable. Scalable.</h2>
-        <p class="section-subtitle">Our model is built for speed and iteration. Build fast, test fast, improve or discard.</p>
-        
-        <div class="model-content">
-            <div class="model-steps">
-                <div class="model-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Build & Launch</h4>
-                        <p>Create a focused digital system targeting a specific niche or problem.</p>
-                    </div>
-                </div>
-                <div class="model-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Test Demand</h4>
-                        <p>Launch quickly, measure response, validate the market assumption.</p>
-                    </div>
-                </div>
-                <div class="model-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Improve or Discard</h4>
-                        <p>If it works, optimize. If not, move on. No attachment to failing ideas.</p>
-                    </div>
-                </div>
-                <div class="model-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Scale Winners</h4>
-                        <p>Double down on what works. Increase automation, expand reach.</p>
-                    </div>
-                </div>
-                <div class="model-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h4>Repeat</h4>
-                        <p>Apply the same playbook to a new niche or vertical. Compound results.</p>
-                    </div>
-                </div>
-            </div>
+    <section id="approach">
+        <div class="section-inner">
+            <div class="section-label">Our Approach</div>
+            <h2 class="section-title">The reality of automated income</h2>
+            <p class="section-intro">We're honest about what this takes. Building automated systems requires upfront work, ongoing maintenance, and smart iteration. But the payoff—income that works for you rather than the other way around—is worth it.</p>
             
-            <div class="model-diagram">
-                <div class="diagram-flow">
-                    <div class="diagram-box">Build System</div>
-                    <div class="diagram-arrow">↓</div>
-                    <div class="diagram-box">Automate Operations</div>
-                    <div class="diagram-arrow">↓</div>
-                    <div class="diagram-box">Generate Income</div>
-                    <div class="diagram-arrow">↻</div>
-                    <div class="diagram-box">Scale & Replicate</div>
+            <div class="approach-grid">
+                <div class="approach-card fade-in">
+                    <h4><span>🔄</span> Code + AI = Efficiency</h4>
+                    <p>We use code for reliability and predictability. AI fills the gaps where rules can't be hard-coded—content, adaptations, edge cases. Together they complement each other perfectly.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="revenue" id="revenue">
-        <div class="container">
-            <div class="section-label">Revenue Model</div>
-            <h2 class="section-title">Multiple streams, compounding returns</h2>
-            <p class="section-subtitle">We don't rely on one income source. Our revenue comes from five distinct directions.</p>
-            
-            <div class="revenue-grid">
-                <div class="revenue-card">
-                    <div class="revenue-icon">📦</div>
-                    <h4>E-Commerce</h4>
-                    <p>Product sales & margins</p>
+                <div class="approach-card fade-in">
+                    <h4><span>📈</span> Breadwinners + Experiments</h4>
+                    <p>We focus on reliable income streams first—these fund the R&D and experimentation. When an experiment pays off, it becomes the next breadwinner.</p>
                 </div>
-                <div class="revenue-card">
-                    <div class="revenue-icon">🔄</div>
-                    <h4>Subscriptions</h4>
-                    <p>Web tools & SaaS</p>
+                <div class="approach-card fade-in">
+                    <h4><span>⏰</span> The Goal: Focused Time</h4>
+                    <p>One hour of morning maintenance. Some customer outreach. R&D and finances. The repetitive work handled by the systems we build—so we can do what humans do best.</p>
                 </div>
-                <div class="revenue-card">
-                    <div class="revenue-icon">💎</div>
-                    <h4>Digital Products</h4>
-                    <p>Templates & tools</p>
-                </div>
-                <div class="revenue-card">
-                    <div class="revenue-icon">🏢</div>
-                    <h4>B2B Services</h4>
-                    <p>Setup & maintenance</p>
-                </div>
-                <div class="revenue-card">
-                    <div class="revenue-icon">📜</div>
-                    <h4>Licensing</h4>
-                    <p>Proven frameworks</p>
+                <div class="approach-card fade-in">
+                    <h4><span>🔒</span> Built to Last</h4>
+                    <p>Security isn't an afterthought. Reliable, maintainable systems that don't require constant firefighting. We build it right the first time.</p>
                 </div>
             </div>
         </div>
     </section>
     
     <section class="cta" id="contact">
-        <div class="container">
-            <div class="cta-box">
-                <h2>Ready to build something automated?</h2>
-                <p>Whether you're an investor looking for automated income streams, or a business needing digital infrastructure, let's talk.</p>
-                <a href="mailto:partners@plurino.com" class="btn btn-primary">Get in Touch →</a>
-            </div>
+        <div class="cta-box">
+            <h2>Have questions or want to connect?</h2>
+            <p>Whether you're curious about what we're building, have an opportunity, or just want to chat about automated systems—reach out.</p>
+            <a href="mailto:hello@plurino.com" class="btn btn-primary">hello@plurino.com →</a>
         </div>
     </section>
     
     <footer>
         <div class="logo">Plur<span>ino</span></div>
-        <p>Building automated income systems. Multiple streams. Zero reinventing the wheel.</p>
+        <p>Building automated income systems.</p>
+        <p class="footer-note">Plurino is the registered company behind all projects.</p>
     </footer>
     
     <script>
-        // Smooth scroll for anchor links
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -845,23 +746,6 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-        });
-        
-        // Fade in elements on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.principle-card, .build-card, .revenue-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>
